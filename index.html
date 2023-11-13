@@ -29,7 +29,13 @@
                 play_arrow
             </span>
         </button>
+        <button type="button" onclick="pararAudio();">
+            <span class="material-symbols-outlined">
+                stop
+            </span>
+        </button>
     </div>
+    <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1" onchange="controlarVolumen()">
     <!-- Recordeu que heu de seguir les lleis en matèria de propietat intelectual.
          En aquest cas, cal nomenar i enllaçar l'autor i el tipus de llicència. 
     -->
@@ -45,6 +51,7 @@
     <!-- Cal seleccionar l'element d'àudio. -->
     <script>
         let audio = document.getElementById('player');
+        let volumeControl = document.getElementById("volumeControl");
 
         function engegarAudio() {
             // engeguem audio
@@ -55,6 +62,21 @@
                 waves[i].classList.add('playing');
             }
         }
+
+        function pararAudio() {
+            // parem audio
+            audio.pause();
+            // parem animació
+            var waves = document.querySelectorAll('.wave');
+            for (var i = 0; i < waves.length; i++) {
+                waves[i].classList.remove('playing');
+            }
+        }
+
+        function controlarVolumen() {
+            audio.volume = volumeControl.value;
+        }
+        
 
     </script>
 </body>
